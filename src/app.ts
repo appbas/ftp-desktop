@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import * as path from 'path';
 
 function createWindow() {
@@ -12,11 +12,15 @@ function createWindow() {
   });
 
   // and load the index.html of the app.
-  mainWindow.loadFile(path.join(__dirname, '../index.html'));
+  mainWindow.loadFile(path.join(__dirname, './ftp-desktop/index.html'));
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
 }
+
+ipcMain.handle('do-a-thing', () => {
+  console.log('asdfasdfasdf');
+});
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

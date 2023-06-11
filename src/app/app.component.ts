@@ -1,5 +1,4 @@
 import { Component, effect, signal } from '@angular/core';
-const electron = (<any>window).require('electron').ipc;
 
 @Component({
   selector: 'app-root',
