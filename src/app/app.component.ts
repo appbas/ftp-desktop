@@ -13,15 +13,10 @@ export class AppComponent {
 
   constructor() {
     effect(this.loadFiles);
-    (<any>window).ipcRenderer.on('load-files', (event: any) => {
-      console.log('TESTE');
-      console.log(event);
-    });
   }
 
   loadFiles(): void {
     console.log('iniciado');
-
-    console.log((<any>window).ipcRenderer.on);
+    setTimeout(() => (<any>window).electron.doThing(), 5000);
   }
 }

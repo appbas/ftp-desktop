@@ -1,14 +1,15 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, ipcRenderer } = require('electron')
-const path = require('path')
+const { app, BrowserWindow, ipcRenderer, ipcMain } = require('electron')
+const path = require('path');
+const fs = require('fs');
 
 let mainWindow;
 
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1600,
+    height: 800,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true,
@@ -20,7 +21,7 @@ function createWindow () {
   mainWindow.loadFile('dist/ftp-desktop/index.html')
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished
@@ -28,7 +29,8 @@ function createWindow () {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createWindow()
-  mainWindow.send('load-files', 'testes'); 
+
+  console.log(ipcRenderer, ipcMain)
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
@@ -36,6 +38,23 @@ app.whenReady().then(() => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
 })
+
+
+
+function loadFiles(path) {
+  const files = fs.readdir(path, (error, sucesso) => {
+
+    if (!!error) {
+      console.error(error);
+    }
+
+    if (!!sucesso) {
+      console.log(sucesso)
+    }
+
+  })
+  console.log(files)
+}
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits

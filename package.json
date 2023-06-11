@@ -9,7 +9,7 @@
     "test": "ng test",
     "start:electron": "ng build --base-href ./ && electron ."
   },
-  "main": "main.js",
+  "main": "src/app.ts",
   "private": true,
   "dependencies": {
     "@angular/animations": "^16.0.0",
