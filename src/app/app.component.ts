@@ -16,6 +16,7 @@ export class AppComponent {
 
   loadFiles(): void {
     console.log('iniciado');
-    setTimeout(() => (<any>window).electron.doThing(), 5000);
+    console.log(window.engeetec);
+    setTimeout(() => window.engeetec.doThing(), 5000);
   }
 }

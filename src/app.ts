@@ -1,8 +1,11 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import * as path from 'path';
+import * as fs from 'fs';
 
 function createWindow() {
   // Create the browser window.
+  const pathPreload = path.join(__dirname, 'preload.js');
+  console.log('pathPreload', pathPreload);
   const mainWindow = new BrowserWindow({
     height: 600,
     webPreferences: {
@@ -12,14 +15,17 @@ function createWindow() {
   });
 
   // and load the index.html of the app.
-  mainWindow.loadFile(path.join(__dirname, './ftp-desktop/index.html'));
+  mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
 }
 
 ipcMain.handle('do-a-thing', () => {
-  console.log('asdfasdfasdf');
+  fs.readdir('/home/bruno/', (err: any, data: any) => {
+    console.log(err);
+    console.log(data);
+  });
 });
 
 // This method will be called when Electron has finished

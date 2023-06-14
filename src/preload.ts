@@ -15,3 +15,11 @@ window.addEventListener('DOMContentLoaded', () => {
     );
   }
 });
+
+import { contextBridge, ipcRenderer } from 'electron';
+
+contextBridge.exposeInMainWorld('engeetec', {
+  doThing: () => {
+    ipcRenderer.invoke('do-a-thing');
+  },
+});

@@ -2,7 +2,7 @@
   "compileOnSave": false,
   "files": ["src/app.ts", "src/preload.ts", "src/renderer.ts"],
   "compilerOptions": {
-    "outDir": "dist",
+    "outDir": "dist/ftp-desktop",
       "sourceMap": false,
       "declaration": false,
       "moduleResolution": "node",

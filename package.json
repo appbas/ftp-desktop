@@ -9,7 +9,7 @@
     "test": "ng test",
     "tsc": "tsc",
     "start:electron": "ng build --base-href ./ && electron ./dist/app.js",
-    "start:electron2": "ng build --base-href ./ && npm run electron:tsc && electron ./dist/ftp-desktop/app.js",
+    "start:electron2": "ng build --base-href ./ && npm run electron:tsc2 && electron ./dist/ftp-desktop/app.js",
     "electron:tsc": "tsc src/app.ts --target es2022 --module es2022 --moduleResolution nodenext --lib es2015,es2016,es2017,es2022,esnext,dom --outFile ./dist/ftp-desktop",
     "electron:tsc2": "tsc --project tsconfig-electron.json"
   },
