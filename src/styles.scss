@@ -1,1 +1,143 @@
 /* You can add global styles to this file, and also import other style files */
+$color-base-0: #000000;
+$color-base-1: #FFFFFF;
+$color-base-2: #e3e4e8;
+$color-base-3: #bfc3c7;
+$color-base-4: #7c8593;
+$color-base-5: #5e6572;
+$color-base-6: rgba(($color-base-0),
+0.8); //preto fontes
+// Theme colors  ==========================
+$color-highlight: #00AE9D;
+$color-selection: #EBFFF4;
+$color-theme-1: #003641;
+$color-theme-2: #7DB61C; //#7472D2;//#49479D;
+$color-theme-3: #C9D200;
+$color-theme-4: #49479D;
+// colors labels ==========================
+$color-label: $color-base-1;
+// Support colors ==========================
+$color-success: #00CC66;
+$color-success-2: #63D995;
+$color-warning: #f39c12;
+$color-warning-2: #FFD762;
+$color-danger: #EB5757;
+$color-danger-2: #EF8C82;
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    color: $color-base-3;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+::-moz-selection { /* Code for Firefox */
+  background: $color-theme-4;
+}
+
+::selection {
+  background: $color-theme-4;
+}
+
+// #001215
+html,
+body {
+  // background-image: linear-gradient(#000000, $color-theme-1) ;
+  background-color: #001215;
+  height: 100vh;
+  overflow: hidden;
+  
+}
+
+a {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+header {
+  background-color: $color-theme-1;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 0px 10px -1px rgba(227, 228, 232, 0.589);
+  width: 100%;
+  height: 6vh;
+  
+> a {
+  margin-top: 5px;
+}
+
+  > div {
+    position: relative;
+    width: 100%;
+    padding: 0 1rem;
+    font-weight: 700;
+  }
+
+  .app-version {
+    position: relative;
+    font-size: 0.71rem;
+    font-weight: normal;
+    color: $color-base-4;
+    bottom: 2px;
+  }
+}
+
+nav, aside, footer {
+  visibility: hidden;
+  display: none;
+}
+
+main {
+  height: calc(100vh - 6vh);
+  width: 100vw;
+  margin-top: 1px;
+  padding: 1rem;
+  overflow: auto;
+
+  p {
+    height: 100px;
+  }
+}
+
+.border {
+  border: 1px solid rgba($color-theme-1, .5);
+  border-radius: 5px;
+}
+
+.container-login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+  background: rgba($color-theme-1, .5);
+  backdrop-filter: sepia(1000px);
+  min-width: 30rem;
+}
+
+input {
+  border: none;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+
+  & > input {
+    background-color: $color-theme-1;
+    padding: .5rem;
+    letter-spacing: 1px;
+    word-spacing: 3px;
+    @extend .border;
+    &::placeholder {
+      color: rgba($color-theme-1, .3);
+    }
+  }
+}
