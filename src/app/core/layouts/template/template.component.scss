@@ -1,0 +1,51 @@
+@import '../../../../assets/scss/variables';
+
+header {
+  background-color: $color-theme-1;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  width: 100%;
+  height: 4rem;
+
+  >a {
+    margin-top: 5px;
+  }
+
+  >div {
+    position: relative;
+    width: 100%;
+    padding: 0 1rem;
+    font-weight: 700;
+  }
+
+  .app-version {
+    position: relative;
+    font-size: 0.71rem;
+    font-weight: normal;
+    color: $color-base-4;
+    bottom: 2px;
+  }
+}
+
+nav,
+aside,
+footer {
+  visibility: hidden;
+  display: none;
+}
+
+main {
+  height: calc(100vh - 6vh);
+  width: 100vw;
+  margin-top: 1px;
+  padding: 1rem;
+  overflow: auto;
+
+  p {
+    height: 100px;
+  }
+}
+
+
