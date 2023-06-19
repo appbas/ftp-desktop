@@ -1,0 +1,8 @@
+{
+  "/FrameHTML/rm/api/rest/*": {
+    "target": "https://portalmeurh.sicoob.com.br",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

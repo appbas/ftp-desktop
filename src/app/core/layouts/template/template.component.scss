@@ -9,7 +9,7 @@ header {
   width: 100%;
   height: 4rem;
 
-  >a {
+  > a {
     margin-top: 5px;
   }
 
@@ -18,6 +18,16 @@ header {
     width: 100%;
     padding: 0 1rem;
     font-weight: 700;
+    
+    &:nth-child(3) {
+      display: inline-flex;
+      justify-content: flex-end;
+      align-items: center;
+       img:hover {
+        transition: outline 300ms linear;
+        outline: 3px solid rgba($color-theme-4, .5);
+      }
+    }
   }
 
   .app-version {
@@ -48,4 +58,8 @@ main {
   }
 }
 
+.avatar {
+  border-radius: 50%;
+  border: 2px solid $color-theme-4;
+}
 

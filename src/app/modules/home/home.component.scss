@@ -15,11 +15,16 @@ table {
   border-collapse: collapse;
   background: rgba($color-theme-1, .5);
   backdrop-filter: blur(90px);
+  border: 1px solid transparent;
+  border: 5px;
   
   th, td {
     padding: 1rem;
     margin: 0;
-    
+  }
+
+  th {
+    text-transform: uppercase;
   }
 
   tr {
@@ -29,9 +34,26 @@ table {
 
   thead {
     margin: 0;
+    th {
+      border-right: 1px solid $color-theme-1;
+      &:last-of-type {
+        border: none;
+      }
+    }
   }
 
   tbody {
     margin: 0;
+    tr {
+      transition: background-color 300ms ease;
+      &:hover {
+        transition: background-color 300ms ease;
+        background-color: rgba($color-theme-1, .5);
+      }
+    }
   }
+}
+
+.emoji-check {
+  font-size: 1.5rem;
 }

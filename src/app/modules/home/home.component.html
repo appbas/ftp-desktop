@@ -8,15 +8,32 @@
         <th>Data</th>
         <th>Hora</th>
         <th>sistema</th>
+        <th>Opcoes</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>Entrada</td>
+        <td><span class="emoji-check">🚶🏽‍♂️</span>Entrada</td>
         <td>01/01/2001</td>
         <td>08:00</td>
         <td>mobile</td>
+        <td>...</td>
+      </tr>
+      <tr>
+        <td><span class="emoji-check">🏃‍♂️</span>Saida</td>
+        <td>01/01/2001</td>
+        <td>12:00</td>
+        <td>web</td>
+        <td>...</td>
+      </tr>
+      <tr *ngFor="let clock of clockings()">
+        <td><span class="emoji-check">🏃‍♂️</span>{{ clock.direction }}</td>
+        <td>{{ clock.hour | date : "dd/MM/yyyy" }}</td>
+        <td>{{ clock.hour | date : "HH:mm" }}</td>
+        <td>web</td>
+        <td>...</td>
       </tr>
     </tbody>
   </table>
+  <button color="success" (click)="onHome()">Acessar</button>
 </div>
