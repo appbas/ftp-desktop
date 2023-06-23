@@ -42,7 +42,10 @@ a {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 3vmax;
+  @media (min-width:1600px) {
+    font-size: 2vmax;
+  }
 }
 
 
@@ -119,7 +122,6 @@ button {
     border: 1px solid rgb(var(--button-color), 0.1);
     user-select: none;
   }
-
   color: rgb(var(--button-color));
   padding: .5rem;
   background-color: rgba(var(--button-color), 0.2);
@@ -145,6 +147,46 @@ button {
     transition: background 0s;
   }
 
+}
+
+.rotate {
+  animation: size .5s  both, rotate 1s .5s linear infinite;
+  > span {
+    display: none;
+  }
+}
+
+.rotate-finish {
+  animation: size 2s reverse linear;
+}
+
+@keyframes size {
+  0% {
+    margin: auto;
+    width: 100%;
+    height: calc(35px - 0.3rem);
+  }
+  50% {
+    border-color: rgb(var(--button-color)) rgb(var(--button-color)) rgb(var(--button-color)) $color-theme-4;
+    border-width: .1rem;
+    background-color: transparent;
+  }
+  100% {
+    border-radius: 50%;
+    border-color: rgb(var(--button-color)) rgb(var(--button-color)) rgb(var(--button-color)) $color-theme-4;
+    border-width: .3rem;
+    background-color: transparent;
+    width: calc(35px - 0.3rem);
+    height: calc(35px - 0.3rem);
+    margin: auto;
+    box-shadow: 0px 0px 10px -1px rgba(var(--button-color), 0.789);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 
