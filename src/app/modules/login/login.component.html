@@ -10,5 +10,9 @@
     <input type="password" placeholder="Senha" />
   </label>
 
-  <button class="rotate" color="success" (click)="onLogin()"><span>Acessar</span></button>
+  Login {{ loginStore() | json }}
+
+  <button class="rotates" color="success" (click)="onLogin()">
+    <span>Acessar</span>
+  </button>
 </div>
