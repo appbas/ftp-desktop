@@ -1,41 +1,82 @@
-import {
-  Component,
-  computed,
-  effect,
-  inject,
-  Injector,
-  Signal,
-} from '@angular/core';
+import { Component, inject, Signal, OnInit } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { LoginService } from 'src/app/shared/services/login/login.service';
-import { LoginStore } from './store/login.store';
-import { UserData, UserType } from './models/user.model';
 import { LoginApiActions } from './store/login.actions';
+import * as fromLogin from './store';
+import { Login, UserData } from './models/user.model';
+import {
+  FormGroup,
+  FormRecord,
+  FormBuilder,
+  Validators,
+  ValidationErrors,
+} from '@angular/forms';
+
+export const ValidationType = {
+  required: 'Campo obrigatório',
+  minlength: 'Tamanho mínimo de {0} caracteres',
+  maxlength: 'Tamanho máximo de {0} caracteres',
+} as any;
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   private readonly _router = inject(Router);
   private readonly _loginService = inject(LoginService);
 
-  // login = this._loginService.login('178-01142', '@@Bruno9238.');
-  login = toSignal(this._loginService.login('178-01142', '@@Bruno9238.'));
   store$: Store = inject(Store);
-  loginStore: Signal<UserData> = this.store$.selectSignal(
-    inject(LoginStore).selectUser
+  loginStore: Signal<UserData | undefined> = this.store$.selectSignal(
+    fromLogin.selectUser
   );
 
-  constructor() {
-    this.store$.dispatch(LoginApiActions.getLogin());
+  form: FormRecord = inject(FormBuilder).record({
+    login: [
+      '',
+      [Validators.required, Validators.minLength(5), Validators.maxLength(24)],
+    ],
+    password: [
+      '',
+      [Validators.required, Validators.minLength(5), Validators.maxLength(24)],
+    ],
+  });
+
+  loading = this.store$.selectSignal(fromLogin.selectLoginLoading);
+
+  constructor() {}
+
+  ngOnInit(): void {
+    this.form.get('')?.errors;
   }
 
   onLogin(): void {
-    // console.log(this.login());
-    // this._router.navigate(['home']);
+    this.store$?.dispatch(
+      LoginApiActions.userLogin({
+        login: { login: 'bruno', password: 'bruno' } as Login,
+      })
+    );
+  }
+
+  validation(validation: ValidationErrors | null | undefined): string[] | undefined {
+
+    const errors = [];
+
+    for (const key in validation) {
+      if (Object.prototype.hasOwnProperty.call(validation, key)) {
+
+        if (['maxlength', 'minlength'].includes(key)) {
+          errors.push((ValidationType[key] as string).replace('{0}', validation[key].requiredLength));
+        } else {
+          errors.push(ValidationType[key]);
+        }
+
+      }
+    }
+
+    return errors;
   }
 }

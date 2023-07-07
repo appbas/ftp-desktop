@@ -3,6 +3,8 @@
 :root {
   --input-invalid: 255, 0, 0;
   --input: 191, 195, 199;
+  --red: 245, 0, 0;
+  --green: 0, 255, 0;
 }
 
 * {
@@ -30,6 +32,7 @@ html,
 body {
   // background-image: linear-gradient(#000000, $color-theme-1) ;
   background-color: #001215;
+  // background-color: #2e2e2e;
   height: 100vh;
   overflow: hidden;
 
@@ -54,10 +57,28 @@ input {
 }
 
 .border {
-  border: 1px solid rgba($color-theme-1, .5);
+  --border-tranparency: .0;
+  border: 2px solid rgba($color-theme-1, var(--border-tranparency));
   border-radius: 5px;
 }
 
+
+.invalid {
+  --input: #{$color-danger-rgb};
+  --border-tranparency: 0.2;
+  // border: 1px solid rgba(var(--input), .5);
+}
+
+.valid {
+  --input: #{$color-success-rgb};
+  --border-tranparency: 0.2;
+  // border: 1px solid rgba(var(--input), .5);
+}
+
+small.small-invalidate {
+  font-size: 0.8rem;
+  color: $color-danger;
+}
 
 label {
 
@@ -72,16 +93,18 @@ label {
     word-spacing: 3px;
     @extend .border;
 
+    border: 2px solid rgba(var(--input), var(--border-tranparency));
+
     &::placeholder {
       color: rgba($color-base-3, .3);
     }
 
     &:hover {
-      border: 1px solid rgba(var(--input), .3);
+      border: 2px solid rgba(var(--input), .3);
     }
 
     &:focus {
-      border: 1px solid rgba(var(--input), .3);
+      border: 2px solid rgba(var(--input), .3);
       outline: 5px solid rgba(var(--input), .1);
     }
   }

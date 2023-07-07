@@ -1,18 +1,27 @@
+<form [formGroup]="form" (ngSubmit)="onLogin()" >
 <div class="container-login border">
-  <img src="assets/logo_sicoob.png" height="20" />
-  <label>
-    Login
-    <input type="text" placeholder="Login" />
-  </label>
+<img src="assets/logo_sicoob.png" height="20" />
+    <label>
+      Login
+      <input type="text" placeholder="Login" formControlName="login" [class.invalid]="form.get('login')?.touched && !!form.get('login')?.errors" />
+      <ng-container *ngIf="form.get('login')?.touched && !!form.get('login')?.errors">
+        <small class="small-invalidate" *ngFor="let item of validation(form.get('login')?.errors)">
+          {{ item }}
+        </small>
+      </ng-container>
+    </label>
 
-  <label>
-    Senha
-    <input type="password" placeholder="Senha" />
-  </label>
+    <label>
+      Senha
+      <!-- <input type="password" placeholder="Senha" formControlName="password" class="invalid" /> -->
+    </label>
 
-  Login {{ loginStore() | json }}
+    <app-input formControlName="password"></app-input>
 
-  <button class="rotates" color="success" (click)="onLogin()">
-    <span>Acessar</span>
-  </button>
-</div>
+    Login {{ loginStore() | json }}
+
+    <button [class.rotate]="loading()" color="success" type="submit">
+      <span>Acessar</span>
+    </button>
+  </div>
+</form>

@@ -1,0 +1,9 @@
+<label>
+  Login
+  <input type="text" placeholder="Login" [formControl]="control" [class.invalid]="control.touched && !!control.errors" />
+  <ng-container *ngIf="control.touched && !!control.errors">
+    <small class="small-invalidate" *ngFor="let item of validation(control.errors)">
+      {{ item }}
+    </small>
+  </ng-container>
+</label>

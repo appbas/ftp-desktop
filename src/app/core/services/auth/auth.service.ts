@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { delay, Observable, of } from 'rxjs';
 import { UserData } from 'src/app/modules/login/models/user.model';
 
 @Injectable({
@@ -20,6 +20,6 @@ export class AuthService {
       token: '',
       permissions: [],
     } as UserData;
-    return of(login);
+    return of(login).pipe(delay(2000));
   }
 }

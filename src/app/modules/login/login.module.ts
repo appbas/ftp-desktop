@@ -1,20 +1,24 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
-import { StoreFeatureModule, StoreModule } from '@ngrx/store';
-import { EffectsModule, provideEffects } from '@ngrx/effects';
-import * as userEffects from './store/login.effects';
-import { LoginStore } from './store/login.store';
+import { LoginEffects } from './store/login.effects';
+import { featureKey, reducer } from './store';
+import { ReactiveFormsModule } from '@angular/forms';
+import { InputModule } from 'src/app/shared/ui/input/input.module';
 
 @NgModule({
   declarations: [LoginComponent],
   imports: [
     CommonModule,
     LoginRoutingModule,
-    EffectsModule.forFeature([userEffects]),
+    EffectsModule.forFeature([LoginEffects]),
+    StoreModule.forFeature(featureKey, reducer),
+    ReactiveFormsModule,
+    InputModule,
   ],
-  providers: [LoginStore],
 })
 export class LoginModule {}

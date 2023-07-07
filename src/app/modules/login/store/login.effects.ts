@@ -1,23 +1,30 @@
-import { inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { catchError, map, of, switchMap, tap, throwError } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { LoginService } from 'src/app/shared/services/login/login.service';
+import { Login, UserData } from '../models/user.model';
 import { LoginApiActions } from './login.actions';
-import { exhaustMap, map, switchMap, tap } from 'rxjs';
-import { LoginStore } from './login.store';
 
-export const login = createEffect(
-  (actions$ = inject(Actions), authService = inject(AuthService)) => {
-    return actions$.pipe(
-      ofType(LoginApiActions.getLogin),
-      switchMap(() =>
-        authService.getLogin().pipe(
-          tap((userData) => {
-            console.log(userData);
-            inject(LoginStore).setCategories(userData);
-          })
+@Injectable()
+export class LoginEffects {
+
+  constructor() {}
+
+  readonly login$ = createEffect(
+    (actions$ = inject(Actions), authService = inject(LoginService)) =>
+      actions$.pipe(
+        ofType(LoginApiActions.userLogin),
+        switchMap(({login}) =>
+          authService.login(login).pipe(
+            map((userData) => {
+              console.log(userData);
+              return LoginApiActions.returnLogin({ userData });
+            }),
+
+          )
         )
       )
-    );
-  },
-  { functional: true, dispatch: false }
-);
+  );
+
+}

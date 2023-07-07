@@ -1,10 +1,10 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { UserData } from '../models/user.model';
+import { Login, UserData } from '../models/user.model';
 
 export const LoginApiActions = createActionGroup({
   source: 'Login Api',
   events: {
-    getLogin: emptyProps(),
+    userLogin: props<{ login: Login }>(),
     returnLogin: props<{ userData: UserData }>(),
   },
 });
