@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, Signal } from '@angular/core';
-import { Observable, map, tap, of, throwError } from 'rxjs';
+import { Observable, map, tap, of, throwError, delay } from 'rxjs';
 import { Login, UserData } from 'src/app/modules/login/models/user.model';
 import { environment } from 'src/environments/environments';
 
@@ -26,7 +26,7 @@ export class LoginService {
       name: 'Bruno.Silva',
       permissions: ['home'],
       token: 'asdf.aasdfasdf.4a5sd4'
-    } as UserData);
+    } as UserData).pipe(delay(3000));
 
     // return this.http.post(
     //   `${environment.baseUrl}/FrameHTML/rm/api/rest/new/auth/login`,

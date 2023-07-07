@@ -1,6 +1,7 @@
-import { Component, forwardRef, Host, Optional, SkipSelf } from '@angular/core';
-import { AbstractControl, ControlContainer, ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';
+import { Component, forwardRef, Input } from '@angular/core';
+import { AbstractControl, ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';
 
+type InputType = 'text' | 'password' | 'email' | 'number';
 
 const ValidationType = {
   required: 'Campo obrigatório',
@@ -27,10 +28,11 @@ const ValidationType = {
 })
 export class InputComponent implements ControlValueAccessor {
 
-  constructor(@Optional() @Host() @SkipSelf() public ngControl: ControlContainer) {
+  @Input({ required: true }) label: string | undefined;
+  @Input() type: InputType = 'text';
+  validation = false;
 
-
-  }
+  constructor() { }
 
   control: FormControl = new FormControl('');
   onChanged: Function = () => { };
@@ -38,6 +40,7 @@ export class InputComponent implements ControlValueAccessor {
 
   writeValue(value: any): void {
     this.control?.setValue(value);
+    this.onChanged(value);
   }
 
   registerOnChange(fn: Function) {
@@ -52,7 +55,7 @@ export class InputComponent implements ControlValueAccessor {
     // throw new Error('Method not implemented.');
   }
 
-  validation(validation: ValidationErrors | null | undefined): string[] | undefined {
+  validations(validation: ValidationErrors | null | undefined): string[] | undefined {
 
     const errors = [];
 
@@ -71,11 +74,11 @@ export class InputComponent implements ControlValueAccessor {
     return errors;
   }
 
-  validate(control: AbstractControl): ValidationErrors | null{
+  validate(control: AbstractControl): ValidationErrors | null {
 
     if (control) {
-      this.control?.setValidators(control.validator);
-      // this.control = control;
+      this.control = control as FormControl;
+      this.validation = true;
     }
 
     return null

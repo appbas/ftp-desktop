@@ -1,0 +1,37 @@
+@import '../../../../../assets/scss/variables';
+
+.toast-info {
+  --toast-bg-color: #{$color-info-rgb};
+  --toast-text-color: #000;
+}
+
+.toast-success {
+  --toast-bg-color: #{$color-success-rgb};
+  --toast-text-color: #000;
+}
+
+.toast-warning {
+  --toast-bg-color: #{$color-warning-rgb};
+  --toast-text-color: #000;
+}
+
+.toast-danger {
+  --toast-bg-color: #{$color-danger-rgb};
+  --toast-text-color: #000;
+}
+
+.toast {
+  cursor: pointer;
+  width: 20rem;
+  max-height: 8rem;
+  transition: all 0.5s ease;
+  pointer-events: all;
+  border-radius: 4px;
+  padding: .5rem;
+  color: var(--toast-text-color);
+  background-color: rgba(var(--toast-bg-color), 0.6);
+  overflow: hidden;
+  &:hover {
+    box-shadow: 0px 0px 10px -1px rgba(var( --toast-bg-color), 0.789);
+  }
+}

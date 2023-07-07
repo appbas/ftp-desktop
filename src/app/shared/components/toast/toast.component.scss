@@ -1,0 +1,13 @@
+
+
+.toast-container {
+  position: absolute;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+  top: 4rem;
+  right: 0;
+  padding: 1rem;
+  justify-content: flex-end;
+}

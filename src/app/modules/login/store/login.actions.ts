@@ -6,5 +6,6 @@ export const LoginApiActions = createActionGroup({
   events: {
     userLogin: props<{ login: Login }>(),
     returnLogin: props<{ userData: UserData }>(),
+    redirectPageAfterLogin: emptyProps(),
   },
 });

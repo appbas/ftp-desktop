@@ -10,6 +10,7 @@ import {
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { Observable, of, tap } from 'rxjs';
+import { ToastService } from 'src/app/shared/components/toast/toast.service';
 import { Clock, Clocking } from 'src/app/shared/models/clocking.model';
 import { ClockService } from 'src/app/shared/services/clock/clock.service';
 
@@ -21,10 +22,12 @@ import { ClockService } from 'src/app/shared/services/clock/clock.service';
 export class HomeComponent {
   private _clockService = inject(ClockService);
   private _route = inject(Router);
+  private toastService: ToastService;
   clocks: Signal<Clock[] | undefined> | undefined;
   clockings = signal<Clocking[]>([]);
 
   constructor() {
+    this.toastService = inject(ToastService);
     effect((clean) => {
       console.log('ásdklfjalksdf');
     });
@@ -79,6 +82,7 @@ export class HomeComponent {
   }
 
   onHome(): void {
-    this._route.navigate(['']);
+    // this._route.navigate(['']);
+    this.toastService.success(new Date().toISOString());
   }
 }

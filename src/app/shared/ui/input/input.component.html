@@ -1,8 +1,12 @@
 <label>
-  Login
-  <input type="text" placeholder="Login" [formControl]="control" [class.invalid]="control.touched && !!control.errors" />
+  {{ label }}
+  <input [type]="type" [placeholder]="label" [formControl]="control" [ngClass]="{
+    'valid': validation && control.touched && control.valid,
+    'invalid': validation && control.touched && control.invalid,
+  }" />
+
   <ng-container *ngIf="control.touched && !!control.errors">
-    <small class="small-invalidate" *ngFor="let item of validation(control.errors)">
+    <small class="small-invalidate" *ngFor="let item of validations(control.errors)">
       {{ item }}
     </small>
   </ng-container>
