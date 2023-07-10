@@ -25,6 +25,9 @@ const featureReducer = createReducer(
   on(LoginApiActions.returnLogin, (state, { userData }) =>
     Object.assign({}, state, { user: userData, loading: false })
   ),
+  on(LoginApiActions.loginFailure, (state) =>
+    Object.assign({}, state, { loading: false })
+  ),
 );
 
 export function reducer(state: State | undefined, action: Action) {

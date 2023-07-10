@@ -17,29 +17,29 @@ export class LoginService {
 
   login({ login, password }: Login): Observable<any> {
 
-    if (login !== 'bruno' || password !== 'bruno') {
-      return throwError(() => new Error('Acesso negado'));
-    }
+    // if (login !== 'bruno' || password !== 'bruno') {
+    //   return throwError(() => new Error('Acesso negado'));
+    // }
 
-    return of({
-      login,
-      name: 'Bruno.Silva',
-      permissions: ['home'],
-      token: 'asdf.aasdfasdf.4a5sd4'
-    } as UserData).pipe(delay(3000));
+    // return of({
+    //   login,
+    //   name: 'Bruno.Silva',
+    //   permissions: ['home'],
+    //   token: 'asdf.aasdfasdf.4a5sd4'
+    // } as UserData).pipe(delay(3000));
 
-    // return this.http.post(
-    //   `${environment.baseUrl}/FrameHTML/rm/api/rest/new/auth/login`,
-    //   {
-    //     password,
-    //     user,
-    //   },
-    //   {
-    //     headers: {
-    //       'content-type': 'application/json',
-    //     },
-    //   }
-    // );
+    return this.http.post(
+      `${environment.baseUrl}/FrameHTML/rm/api/rest/new/auth/login`,
+      {
+        password,
+        user: login,
+      },
+      {
+        headers: {
+          'content-type': 'application/json',
+        },
+      }
+    );
   }
 
   // https://portalmeurh.sicoob.com.br/FrameHTML/rm/api/rest/data/profile/image/%7Bcurrent%7D/

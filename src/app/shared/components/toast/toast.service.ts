@@ -13,6 +13,14 @@ export class ToastService {
   success(message: string): void {
     this.#toast.set(({
       type: 'success',
+      timer: 2000,
+      message,
+    } as Toast))
+  }
+
+  error(message: string): void {
+    this.#toast.set(({
+      type: 'danger',
       timer: 5000,
       message,
     } as Toast))

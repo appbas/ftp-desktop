@@ -9,6 +9,7 @@ import { LoginEffects } from './store/login.effects';
 import { featureKey, reducer } from './store';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputModule } from 'src/app/shared/ui/input/input.module';
+import { ToastModule } from 'src/app/shared/components/toast/toast.module';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -19,6 +20,7 @@ import { InputModule } from 'src/app/shared/ui/input/input.module';
     StoreModule.forFeature(featureKey, reducer),
     ReactiveFormsModule,
     InputModule,
+    ToastModule,
   ],
 })
 export class LoginModule {}

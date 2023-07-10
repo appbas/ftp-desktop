@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 import { Observable, of, tap } from 'rxjs';
 import { ToastService } from 'src/app/shared/components/toast/toast.service';
 import { Clock, Clocking } from 'src/app/shared/models/clocking.model';
+import { ClockingRepository } from 'src/app/shared/repositories/indexeddb/clocking.repository';
+import { IndexedDBRepository } from 'src/app/shared/repositories/indexeddb/indexeddb.repository';
 import { ClockService } from 'src/app/shared/services/clock/clock.service';
 
 @Component({
@@ -31,6 +33,14 @@ export class HomeComponent {
     effect((clean) => {
       console.log('ásdklfjalksdf');
     });
+
+    const i =  inject(ClockingRepository);
+
+    const f = () => i.save({nome: 'Teste'});
+
+    setTimeout(f.bind(this), 2000);
+    // inject(ClockingRepository).save({nome: 'Teste'});
+
     this.init();
   }
 

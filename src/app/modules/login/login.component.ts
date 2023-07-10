@@ -54,11 +54,13 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(): void {
-    this.store$?.dispatch(
-      LoginApiActions.userLogin({
-        login: { login: 'bruno', password: 'bruno' } as Login,
-      })
-    );
+    if (this.form.valid) {
+      this.store$?.dispatch(
+        LoginApiActions.userLogin({
+          login: this.form.value as Login,
+        })
+      );
+    }
   }
 
   validation(validation: ValidationErrors | null | undefined): string[] | undefined {
